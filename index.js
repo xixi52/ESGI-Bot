@@ -91,21 +91,6 @@ client.on("interactionCreate", async (interaction) => {
 });
 
 // ROLES
-client.once("ready", async () => {
-  const channel = await client.channels.cache.get("1024962602616500284");
-  channel.send({
-    content: "Selection de role",
-    components: [
-      new ActionRowBuilder().setComponents(
-        new ButtonBuilder()
-          .setCustomId("1024742961520595065")
-          .setLabel("Gaming")
-          .setStyle(1)
-      ),
-    ],
-  });
-});
-
 client.on("interactionCreate", async (interaction) => {
   if (interaction.isButton()) {
     const role = interaction.guild.roles.cache.get(interaction.customId);
