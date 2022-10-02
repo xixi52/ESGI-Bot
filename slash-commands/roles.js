@@ -167,7 +167,7 @@ module.exports = {
                                       content:
                                         "Le rôle <@&" +
                                         role +
-                                        "> a été supprimé du message autorole, le message dans le salon <#" +
+                                        "> a été ajouté au message autorole, le message dans le salon <#" +
                                         channel +
                                         "> a été mis à jour",
                                       ephemeral: true,
