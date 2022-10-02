@@ -75,7 +75,7 @@ client.on("interactionCreate", async (interaction) => {
     timestamp +
       " " +
       chalk.black.bgWhite.bold(" LOG ") +
-      ` L'utilisateur ${interaction.user.tag} a utilisé la commande ${interaction.name} dans #${interaction.channel.name}.`
+      ` L'utilisateur ${interaction.user.tag} a utilisé la commande ${interaction.commandName} dans #${interaction.channel.name}.`
   );
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
