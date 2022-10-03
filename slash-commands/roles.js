@@ -102,6 +102,47 @@ module.exports = {
 
                             if (results[0]) {
                               if (results[0].status == 0) {
+                                database.query(
+                                  "SELECT * FROM `autorole_role` WHERE `channel_id` = '" +
+                                    channelID +
+                                    "'",
+                                  async function (error, results, fields) {
+                                    const comp = new ActionRowBuilder();
+
+                                    await results.forEach(async (role) => {
+                                      const roleName =
+                                        await interaction.member.guild.roles.cache.get(
+                                          role.role_id
+                                        ).name;
+
+                                      comp.addComponents(
+                                        new ButtonBuilder()
+                                          .setCustomId(role.role_id)
+                                          .setLabel(roleName)
+                                          .setStyle(1)
+                                      );
+                                    });
+
+                                    await interaction.member.guild.channels.cache
+                                      .get(channelID)
+                                      .send({
+                                        content: "Selection de role",
+                                        components: [comp],
+                                      })
+                                      .then((message) => {
+                                        database.query(
+                                          "UPDATE `autorole_channel` SET `message_id` = '" +
+                                            message.id +
+                                            "' WHERE `channel` = '" +
+                                            channelID +
+                                            "'",
+                                          async function (
+                                            error,
+                                            results,
+                                            fields
+                                          ) {}
+                                        );
+                                      });
                                 await interaction.reply({
                                   content:
                                     "Le rôle <@&" +
@@ -111,6 +152,7 @@ module.exports = {
                                     "> status:ON)",
                                   ephemeral: true,
                                 });
+                              });
                               } else {
                                 try {
                                   await interaction.member.guild.channels.cache
@@ -216,6 +258,47 @@ module.exports = {
 
                             if (results[0]) {
                               if (results[0].status == 0) {
+                                database.query(
+                                  "SELECT * FROM `autorole_role` WHERE `channel_id` = '" +
+                                    channelID +
+                                    "'",
+                                  async function (error, results, fields) {
+                                    const comp = new ActionRowBuilder();
+
+                                    await results.forEach(async (role) => {
+                                      const roleName =
+                                        await interaction.member.guild.roles.cache.get(
+                                          role.role_id
+                                        ).name;
+
+                                      comp.addComponents(
+                                        new ButtonBuilder()
+                                          .setCustomId(role.role_id)
+                                          .setLabel(roleName)
+                                          .setStyle(1)
+                                      );
+                                    });
+
+                                    await interaction.member.guild.channels.cache
+                                      .get(channelID)
+                                      .send({
+                                        content: "Selection de role",
+                                        components: [comp],
+                                      })
+                                      .then((message) => {
+                                        database.query(
+                                          "UPDATE `autorole_channel` SET `message_id` = '" +
+                                            message.id +
+                                            "' WHERE `channel` = '" +
+                                            channelID +
+                                            "'",
+                                          async function (
+                                            error,
+                                            results,
+                                            fields
+                                          ) {}
+                                        );
+                                      });
                                 await interaction.reply({
                                   content:
                                     "Le rôle <@&" +
@@ -225,6 +308,7 @@ module.exports = {
                                     "> status:ON)",
                                   ephemeral: true,
                                 });
+                              });
                               } else {
                                 try {
                                   await interaction.member.guild.channels.cache
