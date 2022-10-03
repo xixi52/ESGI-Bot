@@ -95,7 +95,10 @@ client.on("interactionCreate", async (interaction) => {
   if (interaction.isButton()) {
     const role = interaction.guild.roles.cache.get(interaction.customId);
     if (!role)
-      return interaction.reply({ content: "Role not found", ephemeral: true });
+      return interaction.reply({
+        content: "Rôle introuvable",
+        ephemeral: true,
+      });
     const hasRole = interaction.member.roles.cache.has(role.id);
     if (hasRole)
       return interaction.member.roles
