@@ -26,7 +26,7 @@ module.exports = {
         .setDescription("Role à ajouter ou supprimer")
         .setRequired(true)
     )
-    .addRoleOption((option) =>
+    .addChannelOption((option) =>
       option
         .setName("salon")
         .setDescription("Salon de l'autorole")
