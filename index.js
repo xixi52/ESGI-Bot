@@ -105,7 +105,7 @@ client.on("guildMemberAdd", async (member) => {
     avatar =
       avatarURL.endsWith(".png") || avatarURL.endsWith(".jpg")
         ? avatarURL + "?size=2048"
-        : avatarURL.replace(/\.[^\/.]+$/, "") + "?size=2048";
+        : avatarURL.replace(/\.[^\/.]+$/, ".png") + "?size=2048";
 
   const image = await new Canvas.Goodbye()
     .setUsername(member.user.username)
