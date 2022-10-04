@@ -102,6 +102,15 @@ module.exports = {
 
                             if (results[0]) {
                               if (results[0].status == 0) {
+                                try {
+                                  await interaction.member.guild.channels.cache
+                                    .get(channelID)
+                                    .messages.fetch(results[0].message_id)
+                                    .then((message) => {
+                                      message.delete();
+                                    });
+                                } catch (error) {}
+                                
                                 database.query(
                                   "SELECT * FROM `autorole_role` WHERE `channel_id` = '" +
                                     channelID +
@@ -258,6 +267,15 @@ module.exports = {
 
                             if (results[0]) {
                               if (results[0].status == 0) {
+                                try {
+                                  await interaction.member.guild.channels.cache
+                                    .get(channelID)
+                                    .messages.fetch(results[0].message_id)
+                                    .then((message) => {
+                                      message.delete();
+                                    });
+                                } catch (error) {}
+
                                 database.query(
                                   "SELECT * FROM `autorole_role` WHERE `channel_id` = '" +
                                     channelID +
