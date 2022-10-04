@@ -101,6 +101,12 @@ client.on("interactionCreate", async (interaction) => {
 
 // WELCOME
 client.on("guildMemberAdd", async (member) => {
+  const avatarURL = member.user.displayAvatarURL(),
+    avatar =
+      avatarURL.endsWith(".png") || avatarURL.endsWith(".jpg")
+        ? avatarURL + "?size=2048"
+        : avatarURL.replace(/\.[^\/.]+$/, "") + "?size=2048";
+
   const image = await new Canvas.Goodbye()
     .setUsername(member.user.username)
     .setDiscriminator(member.user.discriminator)
@@ -112,9 +118,7 @@ client.on("guildMemberAdd", async (member) => {
     .setColor("title", "#408ac3")
     .setColor("hashtag", "#4007a200")
     .setColor("avatar", "#4007a200")
-    .setAvatar(
-      member.user.displayAvatarURL().replace(/\.[^\/.]+$/, "") + "?size=2048"
-    )
+    .setAvatar(avatar)
     .setOpacity("username-box", 0)
     .setOpacity("discriminator-box", 0)
     .setOpacity("message-box", 0)
@@ -127,12 +131,10 @@ client.on("guildMemberAdd", async (member) => {
     "eductive-welcome-image.png"
   );
 
-  member.guild.channels.cache
-    .get(config.channels.welcome)
-    .send({
-      content: `Bonjour <@${member.user.id}> 👋\nPour avoir accès à ta classe je t'invite à suivre les instructions dans le salon <#1026793587821776978> `,
-      files: [attachment],
-    });
+  member.guild.channels.cache.get(config.channels.welcome).send({
+    content: `Bonjour <@${member.user.id}> 👋\nPour avoir accès à ta classe je t'invite à suivre les instructions dans le salon <#1026793587821776978> `,
+    files: [attachment],
+  });
 });
 
 // ROLES
