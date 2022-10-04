@@ -13,7 +13,9 @@
     "discord.js": "^14.5.0",
     "fs": "^0.0.1-security",
     "moment": "^2.29.4",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "mysql2": "^2.3.3",
+    "discord-canvas": "^1.5.2"
   },
   "devDependencies": {
     "prettier": "2.0.2"
