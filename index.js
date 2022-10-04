@@ -1,6 +1,7 @@
 // CLASSES
 const {
   Client,
+  AttachmentBuilder,
   Collection,
   GatewayIntentBits,
   Partials,
@@ -11,6 +12,7 @@ const config = require("./config.json"),
   path = require("path"),
   chalk = require("chalk"),
   moment = require("moment"),
+  Canvas = require("discord-canvas"),
   database = createConnection({
     host: config.mysql.host,
     user: config.mysql.user,
@@ -95,6 +97,42 @@ client.on("interactionCreate", async (interaction) => {
       ephemeral: true,
     });
   }
+});
+
+// WELCOME
+client.on("guildMemberAdd", async (member) => {
+  const image = await new Canvas.Goodbye()
+    .setUsername(member.user.username)
+    .setDiscriminator(member.user.discriminator)
+    .setMemberCount("52")
+    .setGuildName("campus eductive reims")
+    .setText("title", "bienvenue")
+    .setText("message", "bienvenue au {server}")
+    .setText("member-count", "")
+    .setColor("title", "#408ac3")
+    .setColor("hashtag", "#4007a200")
+    .setColor("avatar", "#4007a200")
+    .setAvatar(
+      member.user.displayAvatarURL().replace(/\.[^\/.]+$/, "") + "?size=2048"
+    )
+    .setOpacity("username-box", 0)
+    .setOpacity("discriminator-box", 0)
+    .setOpacity("message-box", 0)
+    .setOpacity("border", 0)
+    .setBackground("assets/img/greeting_card.png")
+    .toAttachment();
+
+  const attachment = new AttachmentBuilder(
+    image.toBuffer(),
+    "eductive-welcome-image.png"
+  );
+
+  member.guild.channels.cache
+    .get(config.channels.welcome)
+    .send({
+      content: `Bonjour <@${member.user.id}> 👋\nPour avoir accès à ta classe je t'invite à suivre les instructions dans le salon <#1026793587821776978> `,
+      files: [attachment],
+    });
 });
 
 // ROLES
