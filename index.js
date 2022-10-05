@@ -77,28 +77,6 @@ client.once("disconnect", () => {
   );
 });
 
-// INTERACTIONS
-client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-  console.log(
-    timestamp +
-      " " +
-      chalk.black.bgWhite.bold(" LOG ") +
-      ` L'utilisateur ${interaction.user.tag} a utilisé la commande ${interaction.commandName} dans #${interaction.channel.name}.`
-  );
-  const command = client.commands.get(interaction.commandName);
-  if (!command) return;
-  try {
-    await command.execute(interaction);
-  } catch (error) {
-    console.error(error);
-    await interaction.reply({
-      content: "Une erreur est survenue!",
-      ephemeral: true,
-    });
-  }
-});
-
 // WELCOME
 client.on("guildMemberAdd", async (member) => {
   const avatarURL = member.user.displayAvatarURL(),
@@ -137,7 +115,7 @@ client.on("guildMemberAdd", async (member) => {
   });
 });
 
-// ROLES
+// INTERACTIONS
 client.on("interactionCreate", async (interaction) => {
   if (interaction.isButton()) {
     database.query(
@@ -224,6 +202,24 @@ client.on("interactionCreate", async (interaction) => {
         }
       }
     );
+  } else if (interaction.isChatInputCommand()) {
+    console.log(
+      timestamp +
+        " " +
+        chalk.black.bgWhite.bold(" LOG ") +
+        ` L'utilisateur ${interaction.user.tag} a utilisé la commande ${interaction.commandName} dans #${interaction.channel.name}.`
+    );
+    const command = client.commands.get(interaction.commandName);
+    if (!command) return;
+    try {
+      await command.execute(interaction);
+    } catch (error) {
+      console.error(error);
+      await interaction.reply({
+        content: "Une erreur est survenue!",
+        ephemeral: true,
+      });
+    }
   }
 });
 
