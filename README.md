@@ -1,4 +1,4 @@
-<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="ESGI" src="https://i.im.ge/2022/09/08/OfyxJa.2675891-journee-portes-ouvertes-digitale-53-144915.jpg">  
+<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="ESGI" src="https://i.goopics.net/v183jj.jpg">  
 
 # ESGI Bot
 
