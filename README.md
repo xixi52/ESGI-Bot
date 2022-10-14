@@ -2,7 +2,7 @@
 
 # ESGI Bot
 
-> Ce Bot a été conçu pour le serveur Discord de la promotion ESGI 1ère année du campus de Reims.
+> Ce Bot a été conçu pour le serveur Discord de l'ESGI du campus de Reims.
 
 ESGI Bot est un robot Discord programmé en JavaScript avec [Discord.js](https://discord.js.org) et [Mysql](https://www.mysql.com) par [Alexis MOUREY](https://github.com/xixi52).
 
